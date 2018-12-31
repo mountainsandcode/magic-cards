@@ -59,6 +59,15 @@ app.post('/test/:code', (req, res) => {
   res.send('ok')
 })
 
+app.get('/scan/:code', (req, res) => {
+  const command = `node ${__dirname}/../scanner/testCard.js ${req.params.code}`
+  exec(command, function(error, stdout, stderr) {
+    console.log(stdout, stderr, error)
+  })
+
+  res.send('ok')
+})
+
 app.get('/metadata/spotify', (req, res) => {
   const type = req.query.type
   const uri = req.query.uri
