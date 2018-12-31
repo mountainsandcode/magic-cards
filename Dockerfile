@@ -10,5 +10,5 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN script/docker/setup
 
-EXPOSE 5000
+EXPOSE 8125
 CMD [ "script/stack" ]
