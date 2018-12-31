@@ -11,7 +11,8 @@ class CardProcessor {
     let card = this.findCard(code)
 
     if (!card) {
-      console.log('Card not found.')
+      console.log('Card not found. Adding as missing card')
+      addMissingCard(code)
       return
     }
 
@@ -27,6 +28,13 @@ class CardProcessor {
     return card
   }
 
+  addMissingCard(code) {
+    const data = fs.readFileSync(__dirname + '/../config/cards.json').toString()
+    let d = new Date();
+    
+    fs.writeFileSync(__dirname + '/../config/cards.json', data.replace(']',',{"code": "' + code + '","type": "","action": "","artURL": "","title": "Unknown card ' + code + '","subtitle": "Scanned at ' + d.toString() +'","uri": "","id": ' + d.getTime() +'}]'))
+  }
+  
   processCard(card) {
     const actionData = fs.readFileSync(__dirname + '/../config/actions.json').toString()
     const actions = JSON.parse(actionData)
