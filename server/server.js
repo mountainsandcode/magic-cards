@@ -16,7 +16,7 @@ var spotifyApi = new SpotifyWebApi({
 const graphQLAPI = require('./lib/graphql')
 
 const app = express()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8125
 
 app.use('/graphql', graphQLAPI)
 app.use(express.static(path.join(__dirname, 'public')))
