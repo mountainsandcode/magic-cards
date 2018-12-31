@@ -12,7 +12,7 @@ class CardProcessor {
 
     if (!card) {
       console.log('Card not found. Adding as missing card')
-      addMissingCard(code)
+      this.addMissingCard(code)
       return
     }
 
